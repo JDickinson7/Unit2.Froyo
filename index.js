@@ -1,13 +1,28 @@
 //Create a prompt funtion that alllows the customer to put in the flavors they prefer
-prompt ="What flavors would you like today? We have Vanilla, Strawberry, and Coffee! Please comma seperate your order!"
+document.getElementById('submit-button').addEventListener('click', function() {
+  // Get user input (froyo flavors)
+  const userInput = document.getElementById('froyo-flavors').value;
 
-//create an array from the input/strings prompt 
+  // Create an array from the input string (splitting by commas and trimming extra spaces)
+  const flavorsArray = userInput.split(',').map(flavors => flavors.trim());
 
+  // Create an object to track the count of each flavor
+  const flavorCount = {};  // Initialize the object here
 
-//create a loop to iterate through the array of flavors? 
+  // Iterate through the array and update the object with flavor counts
+  flavorsArray.forEach(flavor => {
+    if (flavor) {  // Add a check to avoid counting empty strings
+      if (flavorCount[flavor]) {
+        flavorCount[flavor]++;
+      } else {
+        flavorCount[flavor] = 1;
+      }
+    }
+  });
 
-
-//create an object const to keep count of how many orders of each flavor there are
+  // Output the result in the console (in a table format)
+  console.table(flavorCount);
+});
 
 
 //correctly count the number of times a flavor in the users input
